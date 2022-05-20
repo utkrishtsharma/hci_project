@@ -1,0 +1,329 @@
+<!-- ABHISHEK RANE
+822056658
+CS645 PROJ2 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Cart</title>
+<script type="text/javascript" src="js/jquery-2.1.1.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
+
+    
+<link rel="stylesheet" href="style.css">
+ <script src="shopping_cart.js"></script>
+  <script src="show.js"></script>
+   <script src="cart.js"></script>
+ 
+</head>
+<body>
+
+<div id="cart" class="cart"></div>
+   <div id="message"> 
+   <h2>Your Cart Is Empty!!!</h2></n>
+   <h3><a href="products.html"><button  class="btn btn-info btn-lg">Add Items</button></a></h3>
+</div>
+<div id = "ordersummary"> 
+   <input type="hidden" name="total" id="total">
+   <input type="hidden" name="retail" id="retail">
+   <input type="hidden" name="tax" id="tax">
+</div>
+<div>
+  <p>
+  <!-- Trigger the modal with a button -->
+  <table id="order"><tr><td><button type="button" class="btn btn-info btn-lg" data-toggle="modal"  data-target="#myModal">Place Order</button></td>
+  <td><a href="products.html"><button id="order" class="btn btn-info btn-lg">Add Items</button></a></td></tr></table>
+
+
+  </p>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Order Form</h4>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="http://jadran.sdsu.edu/jadrn034/jsp/confirmation.jsp">
+   <div class="form-horizontal" id='newForm'>
+    <div class="container2">
+     
+                 <h3>Billing Address</h3>
+              <div class="form-group">
+                 <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                    <div class="col-sm-6">
+                    <input type="text" id="billingfirstName" name="billingfirstName" placeholder="First Name" class="form-control"  required pattern=".*\S+.*" >          
+                    </div>
+              </div>
+
+               <div class="form-group">
+                 <label for="middleName" class="col-sm-3 control-label">Middle Name</label>
+                   <div class="col-sm-6">
+                     <input type="text" id="billingmiddleName" name="billingmiddleName" placeholder="Middle Name (Optional)" class="form-control" >
+                   </div>
+                </div>
+
+        <div class="form-group">
+            <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+              <div class="col-sm-6">
+                <input type="text" id="lastName" name="billinglastName" placeholder="Last Name" class="form-control"  required pattern=".*\S+.*">
+             </div>
+        </div>
+
+
+               <div class="form-group">
+                 
+                   <label for="address" class="col-sm-3  control-label">Address</label>
+                        <div class="col-sm-6">
+                        <input type="text" id="address" name="billingaddress1" placeholder="Address 1" class="form-control"  required pattern=".*\S+.*">
+                         <input type="text"  name="billingaddress2" placeholder="Address 2 (Optional)" class="form-control" >
+                      </div>
+              </div>
+
+
+            <div class="form-group">
+              
+               <label for="city" class="col-sm-3 control-label">City</label>
+                 <div class="col-sm-6">
+                   <input type="text" id="city" name="billingcity" placeholder="Enter City Name Here.." class="form-control"  required pattern=".*\S+.*">
+                 </div> 
+            </div>
+
+                <div class="form-group">
+
+              <label for="state" class="col-sm-3 control-label">State</label>
+                   <div class="col-sm-6">
+                   <input type="text" id="state" name="billingstate" placeholder="Enter State Name Here.." class="form-control"  required pattern=".*\S+.*">
+                </div>  
+              </div>
+
+
+
+              <div class="form-group">
+                <label for="zip" class="col-sm-3 control-label">Zip</label>
+                  <div class="col-sm-6">
+                    <input type="text" id="zip" name="billingzip" placeholder="Enter Zip Name Here.." class="form-control" maxlength="5" required pattern="^\d{5}$">
+                  </div>  
+              </div>
+
+
+
+              <div class="form-group">
+                 <label for="phone" class="col-sm-3 control-label">Phone Number</label>
+                 <div class="col-sm-6" >
+                   
+                     <input type="text" name="billingphone" id="phone" class="form-control" placeholder="Enter 10 Digits  Here.." required pattern="^\d{3}\d{3}\d{4}$"  maxlength="10"  />
+                   
+                </div> 
+              </div>
+      
+
+
+   
+
+              
+             <div class="sep"></div>
+
+   
+
+<div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="billingtoo" onclick="FillBilling(this.form)" >same shipping address 
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>shipping Address</h3>
+
+              <div class="form-group">
+                 <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                    <div class="col-sm-6">
+                    <input type="text" id="shipfirstName" name="shipfirstName" placeholder="First Name" class="form-control" autofocus required pattern=".*\S+.*" >          
+                    </div>
+              </div>
+
+               <div class="form-group">
+                 <label for="middleName" class="col-sm-3 control-label">Middle Name</label>
+                   <div class="col-sm-6">
+                     <input type="text" id="middleName" name="shipmiddleName" placeholder="Middle Name (Optional)" class="form-control" >
+                   </div>
+                </div>
+
+        <div class="form-group">
+            <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+              <div class="col-sm-6">
+                <input type="text" id="lastName" name="shiplastName" placeholder="Last Name" class="form-control"  required pattern=".*\S+.*" >
+             </div>
+        </div>
+
+
+               <div class="form-group">
+                 
+                   <label for="address" class="col-sm-3  control-label">Address</label>
+                        <div class="col-sm-6">
+                        <input type="text" id="address" name="shipaddress1" placeholder="Address 1" class="form-control"  required pattern=".*\S+.*">
+                         <input type="text"  name="shipaddress2" placeholder="Address 2 (Optional)" class="form-control" >
+                      </div>
+              </div>
+
+
+            <div class="form-group">
+              
+               <label for="city" class="col-sm-3 control-label">City</label>
+                 <div class="col-sm-6">
+                   <input type="text" id="city" name="shipcity" placeholder="Enter City Name Here.." class="form-control"  required pattern=".*\S+.*">
+                 </div> 
+            </div>
+
+                <div class="form-group">
+
+              <label for="state" class="col-sm-3 control-label">State</label>
+                   <div class="col-sm-6">
+                   <input type="text" id="state" name="shipstate" placeholder="Enter State Name Here.." class="form-control"  required pattern=".*\S+.*">
+                </div>  
+              </div>
+
+
+
+              <div class="form-group">
+                <label for="zip" class="col-sm-3 control-label">Zip</label>
+                  <div class="col-sm-6">
+                    <input type="text" id="zip" name="shipzip" placeholder="Enter Zip Name Here.." class="form-control" maxlength="5" required pattern="^\d{5}$">
+                  </div>  
+              </div>
+
+
+
+              <div class="form-group">
+                 <label for="phone" class="col-sm-3 control-label">Phone Number</label>
+                 <div class="col-sm-6" >
+                   
+                     <input type="text" name="shipphone" id="phone" class="form-control" placeholder="Enter 10 Digits Here.." required pattern="^\d{3}\d{3}\d{4}$" maxlength="10"  />
+                   
+                </div> 
+              </div>
+
+              <div class="sep"></div>
+              <h3>Payment Details</h3>
+
+     <div class="col-sm-3" >
+
+<label for="phone" class="col-sm-3 control-label">card</label>
+            <select  type="card" name="cardtype" id="cardtype" class="Selection"  required="required">
+                              <option value="">Select Card</option>
+                             <option value="VISA">VISA</option>
+                              <option value="Mastercard">Mastercard</option>
+                              <option value="Discover">Discover</option>
+                              <option value="American Express">AmericanExpress</option>
+                        
+                          </select> 
+           </div>
+
+              <div class="form-group">
+                 <label for="card" class="col-sm-3 control-label">Card Number</label>
+                 <div class="col-sm-6" >
+                   
+                     <input type="text" name="card" id="card" class="form-control" class="form-control"   maxlength="16" required pattern="^\d{16}$" placeholder="Enter 16 digits here.." />
+                   
+                </div> 
+              </div>
+
+            
+                
+<h4>Card Expiry</h4>
+<div class="col-sm-3" >
+
+<label for="mm" class="col-sm-3 control-label"></label>
+            <select  type="mm" name="mm" id="mm" class="Selection"  required="required">
+                              <option value="">Month</option>
+                              <option value="4">4</option>
+                               <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                               <option value="9">9</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                        
+                          </select> 
+           </div>
+ <div class="col-sm-3" >
+
+          
+                 <label for="yyy" class="col-sm-3 control-label"></label>
+            <select  type="yyy" name="yyy" id="yyy" class="Selection"  required="required">
+                              <option value="">Year</option>
+                              <option value="2018">2018</option>
+                              <option value="2019">2019</option>
+                              <option value="2020">2020</option>
+                               <option value="2021">2021</option>
+                              <option value="2022">2022</option>
+                              <option value="2023">2023</option>
+                              <option value="2024">2024</option>
+                               <option value="2025">2025</option>
+                              <option value="2026">2026</option>
+                              <option value="2027">2027</option>
+                              <option value="2028">2028</option>
+                              <option value="2029">2029</option>
+                               <option value="2030">2030</option>
+                              <option value="2031">2031</option>
+                              <option value="2032">2032</option>
+                              <option value="2033">2033</option>
+                               <option value="2034">2034</option>
+                              <option value="2035">2035</option>
+                              <option value="2036">2036</option>
+                              <option value="2037">2037</option>
+                               <option value="2038">2038</option>
+                              <option value="2039">2039</option>
+                              <option value="2040">2040</option>
+                              
+                        
+                          </select> 
+              </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-6">
+                        
+                    </div>
+                </div> <!-- /.form-group -->
+
+
+
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <button type="submit" class="btn btn-primary btn-block" >Order</button>
+
+                    </div>
+                </div> 
+     </div>
+     </div>
+  </form> <!-- /form -->
+
+        </div><!-- Modal content End-->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"   data-dismiss="modal" >Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+</body>
+</html>
